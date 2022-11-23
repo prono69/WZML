@@ -82,7 +82,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
             if USER_TASKS_LIMIT == get_user_task(user_id):
                 return sendMessage(f"<b>Bot Total Task Limit : {USER_TASKS_LIMIT} \nYour Tasks : {get_user_task(user_id)}\n#user limit exceed</b>", bot ,message)
 
-    if user_id != OWNER_ID and user_id not in user_data and not user_data[user_id].get('is_sudo') and not user_data[user_id].get('is_paid'):
+    if user_id != OWNER_ID and ((not user_data[user_id].get('is_sudo') and not user_data[user_id].get('is_paid')) if user_id in user_data else True):
         time_gap = timegap_check(message)
         if time_gap:
             return
