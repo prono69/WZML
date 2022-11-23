@@ -70,7 +70,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
 
     total_task = len(download_dict)
     user_id = message.from_user.id
-    if user_id != OWNER_ID and user_id not in user_data and not user_data[user_id].get('is_sudo') and not user_data[user_id].get('is_paid'):
+    if user_id != OWNER_ID and ((not user_data[user_id].get('is_sudo') and not user_data[user_id].get('is_paid')) if user_id in user_data else True):
         if config_dict['PAID_SERVICE'] is True:
             if TOTAL_TASKS_LIMIT == total_task:
                 return sendMessage(f"<b>Bot Total Task Limit : {TOTAL_TASKS_LIMIT}\nTasks Processing : {total_task}\n#total limit exceed </b>\n#Buy Paid Service", bot ,message)
