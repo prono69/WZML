@@ -79,7 +79,7 @@ async def token_callback(_, query):
         return await query.answer('Already Used, Generate New One', show_alert=True)
     update_user_ldata(user_id, 'token', str(uuid4()))
     update_user_ldata(user_id, 'time', time())
-    await query.answer('Activated Temporary Token!', show_alert=True)
+    await query.answer('Successfully Activated Temporary Token!', show_alert=True)
     kb = query.message.reply_markup.inline_keyboard[1:]
     kb.insert(0, [InlineKeyboardButton(BotTheme('ACTIVATED'), callback_data='pass activated')])
     await editReplyMarkup(query.message, InlineKeyboardMarkup(kb))
